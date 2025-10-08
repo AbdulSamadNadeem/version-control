@@ -21,3 +21,7 @@ jobs:
 
   - name: Check Formatting
     run: npx prettier --Check
+
+  - name: Deploy to Vercel
+    if: github.ref == 'refs/heads/master'
+    run: npx vercel --prod --token ${{secrets.VERCEL_TOKEN}}
