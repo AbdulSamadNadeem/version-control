@@ -10,6 +10,13 @@ router.get("/get", async (req, res) => {
   });
 });
 
+router.get("/api", async (req, res) => {
+  return res.status(200).json({
+    message: "success",
+    data: "Hello from Dev",
+  });
+});
+
 app.use("/app", router);
 app.listen(3000, () => {
   console.log("server is started");
