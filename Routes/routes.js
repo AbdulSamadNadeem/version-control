@@ -1,10 +1,10 @@
-const express =  require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
 router.get("/get", async (req, res) => {
   return res.status(200).json({
     message: "success",
-    data: "Hello from server",
+    data: "Hello from api",
   });
 });
 
@@ -17,8 +17,14 @@ router.get("/api", async (req, res) => {
 router.get("/server", async (req, res) => {
   return res.status(200).json({
     message: "success",
-    data: "Hello from gitDev",
+    data: "Hello from server",
   });
 });
 
-module.exports = router
+router.get("/office", async (req, res) => {
+  return res.status(200).json({
+    message: "success",
+    data: "Hello from office",
+  });
+});
+module.exports = router;
