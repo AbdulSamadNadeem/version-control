@@ -1,27 +1,30 @@
-name: Test Feature Branch
+name: Test and Deploy Feature Branch
+
 on:
   pull_request:
-    branches: [ master ]
+    branches:
+    - master
 
 jobs:
   build-and-test:
-  runs-on: ubuntu-latest
-  steps:
-  - uses: actions/checkout@v3
-  - name: Setup Node
-    uses: actions/setup-node@v3
-    with:
-      node-version: '18'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
 
-  - name: Install Dependencies
-    run: npm install
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
 
-  - name: Run Tests
-    run: npm test
+    - name: Install Dependencies
+      run: npm install
 
-  - name: Check Formatting
-    run: npx prettier --Check
+    - name: Run Tests
+      run: npm test
 
-  - name: Deploy to Vercel
-    if: github.ref == 'refs/heads/master'
-    run: npx vercel --prod --token ${{secrets.VERCEL_TOKEN}}
+    - name: Check Formatting
+      run: npx prettier --check
+
+    - name: Deploy to Vercel
+      if: github.ref == 'refs/heads/master'
+      run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
