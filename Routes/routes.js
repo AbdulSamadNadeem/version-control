@@ -27,4 +27,11 @@ router.get("/office", async (req, res) => {
     data: "Hello from office",
   });
 });
+router.get("/lastman", async (req, res) => {
+  return res.status(200).json({
+    message: "success",
+    data: "Hello from lastman",
+  });
+});
+
 module.exports = router;
